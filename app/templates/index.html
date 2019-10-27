@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+
 {% import 'macros.html' as macro%}
 
 
@@ -8,5 +9,27 @@
     {{macro.displayRandomList(quote)}}
     
 </p>
+
+<a href="/blogs">Write a new blog</a><br>
+
+
+
+
+
+{% for blogs in blogs %}
+{{blogs.date_posted.strftime('%Y/%m/%d @ %r')}} <br> 
+{{blogs.title}} <br>
+{{blogs.blogs}} <br> <hr>
+
+{% endfor %}
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
