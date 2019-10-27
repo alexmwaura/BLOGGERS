@@ -33,8 +33,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(255), unique=True, index=True)
 
     # Relationship defining
-    blogs = db.relationship("Blogs", backref='user', lazy='dynamic')
     comment = db.relationship("Comments", backref='user', lazy='dynamic')
+    blogs = db.relationship("Blogs", backref='user', lazy='dynamic')
 
     @property
     def password(self):
@@ -50,6 +50,14 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+
 
 class Blogs(db.Model):
     '''
@@ -57,7 +65,7 @@ class Blogs(db.Model):
     Class that holds instances of all the qblogs in the different categories
     '''
 
-    all_blogs = []
+    
 
     __tablename__ = 'blogs'
 
@@ -66,9 +74,8 @@ class Blogs(db.Model):
     blogs = db.Column(db.String)
     upvotes = db.Column(db.Integer)
     downvotes = db.Column(db.Integer)
-    date_posted = db.Column(db.DateTime, default=datetime.now)
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    comment = db.relationship("Comments", backref="blogs", lazy="dynamic")
 
     def save_blog(self):
         """
@@ -92,16 +99,15 @@ class Blogs(db.Model):
         self.downvotes += 1
         self.save_blog()
 
-    @classmethod
-    def get_blogs(cls, id):
+
+    def get_blogs(cls):
         """
         function which gets a particular blog when requested by date posted
         """
-        blogs = Blogs.query.all()
+        blogs = Blogs.query.query.all()
+
         return blogs
 
-       
-    @classmethod
     def clear_blogs(cls):
         '''
         Function that deletes a blog
@@ -115,10 +121,13 @@ class Comments(db.Model):
     __tablename__ = 'comment'
 
     id = db.Column(db.Integer, primary_key=True)
-    comment_id = db.Column(db.String(255))
-    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comment = db.Column(db.String(255))
+    date_posted = db.Column(db.DateTime, default=datetime.now)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+   
+    
     blogs_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
+
 
     def save_comment(self):
         '''
@@ -127,7 +136,20 @@ class Comments(db.Model):
         db.session.add(self)
         db.session.commit()
 
-        @classmethod
-        def get_comments(self, id):
-            comment = Comments.query.order_by(Comments.date_posted.desc()).filter_by(blogs_id=id).all()
-            return comment
+    @classmethod
+    def get_comments(cls, id):
+        comment = Comments.query.all(id = id)
+        return comment
+
+
+class Subscriber(db.Model):
+    __tablename___ = 'subscribers'
+
+    id = db.Column(db.Integer,primary_key = True)
+    email = db.Column(db.String(255),unique = True,index = True)
+
+    def save_subsciber(self):
+        db.session.commit(self)
+        db.session.commit()
+
+        
