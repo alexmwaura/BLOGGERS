@@ -10,6 +10,25 @@
 
 
 
+{% macro displayBlogsList(blogs) %}
+
+{% for blogs in blogs%}
+
+
+
+
+
+<a href="/blog/comment">comment</a>
+
+{{blogs.date_posted.strftime('%Y/%m/%d @ %r')}} <br> 
+{{blogs.title}} <br>
+
+{% endfor %}
+{% endmacro %}
+
+
+
+
 
 
 
