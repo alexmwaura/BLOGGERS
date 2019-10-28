@@ -8,10 +8,12 @@ class Config:
     '''
     SECRET_KEY = os.environ.get('SECRET_KEY')
     RANDOM_BASE_URL = "http://quotes.stormconsultancy.co.uk/random.json"
+
+    
     POPULAR_BASE_URL = "http://quotes.stormconsultancy.co.uk/popular.json"
     
     RANDOM_API_KEY = os.environ.get("RANDOM_API_KEY")
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://alex:32915974@localhost/blog'
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://alex:32915974@localhost/blog'
 
 
     MAIL_SERVER = 'smtp.gmail.com'
@@ -29,6 +31,8 @@ class ProdConfig(Config):
     '''
     Production configuration child class
     '''
+
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
     pass
 

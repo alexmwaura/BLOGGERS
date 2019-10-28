@@ -35,6 +35,13 @@ def get_random():
 
     return random_results
 
+
+
+
+
+
+    
+
 # def get_popular_quotes():
 #     '''
 #     Function that gets the json response to our url reques
