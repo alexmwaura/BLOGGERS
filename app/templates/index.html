@@ -80,69 +80,73 @@
 
     
 
-    <section id="ref">
+<div style="margin-left: 5px;">
+
+        <section id="ref">
             
-            {% for blogs in blogs %}
-            
-            <div class="col-md-8">
-                    <div class="card">
-                            <div class="card-title" style="text-align: center;">
-                                {{blogs.user}} <hr>{{blogs.title}}
-                                
-                            </div> <hr>
-                            <div class="card-body" style="font-size: 20px;">
-         
-                             {{blogs.blogs}}
-         
-                            </div>
-         
-                            <div class="card-footer">
-                                 {{blogs.date_posted.strftime('%Y/%m/%d @ %r')}} <br> <hr>
-
-                                 <a href="{{url_for('main.delete_blog',id = blogs.id)}} "class="btn btn-danger">Delete post</a>
-         
-                            </div>
-         
-                            <div class="" style="font-size: 30px;">
-
-                                    <a href="/blog/comment/{{blogs.id}}" class="btn btn-success">comment</a> <br>
-
-                                    {% for comment in comment %}
+                {% for blogs in blogs %}
+                
+                <div class="col-md-8">
+                        <div class="card">
+                                <div class="card-title" style="text-align: center;">
+                                    {{blogs.user}} <hr>{{blogs.title}}
                                     
-                                    {% if comment.blogs.id == blogs.id%}
-                                    
-                                    {{comment.comment}} <br>
-                                    <a href="{{url_for('main.delete_comment',blogs_id = comment.id)}}" class="btn btn-danger" style="font-size: 20px;">Delete</a> <hr>
-
-
-                                    
-                                    {%endif%}
-
-                                    
-                                    {% endfor %}
+                                </div> <hr>
+                                <div class="card-body" style="font-size: 20px;">
+             
+                                 {{blogs.blogs}}
+             
+                                </div>
+             
+                                <div class="card-footer">
+                                     {{blogs.date_posted.strftime('%Y/%m/%d @ %r')}} <br> <hr>
+    
+                                     <a href="{{url_for('main.delete_blog',id = blogs.id)}} "class="btn btn-danger">Delete post</a>
+             
+                                </div>
+             
+                                <div class="" style="font-size: 30px;">
+    
+                                        <a href="/blog/comment/{{blogs.id}}" class="btn btn-success">comment</a> <br>
+    
+                                        {% for comment in comment %}
                                         
+                                        {% if comment.blogs.id == blogs.id%}
+                                        
+                                        {{comment.comment}} <br>
+                                        <a href="{{url_for('main.delete_comment',blogs_id = comment.id)}}" class="btn btn-danger" style="font-size: 20px;">Delete</a> <hr>
+    
+    
+                                        
+                                        {%endif%}
+    
+                                        
+                                        {% endfor %}
+                                            
+    
+                                </div>
+                             
+                             
+                         </div>
+    
+                </div>
+    
+    
+                
+    
+    
+                {% endfor %}
+    
+    
+                <div class-col-md-4>
+    
+                        <a href="/blogs" class="btn btn-success" style="font-size: 20px;">Write a new blog</a><br> <br>
+    
+                </div>
+    
+            </section>
 
-                            </div>
-                         
-                         
-                     </div>
-
-            </div>
-
-
-            
-
-
-            {% endfor %}
-
-
-            <div class-col-md-4>
-
-                    <a href="/blogs" class="btn btn-success" style="font-size: 20px;">Write a new blog</a><br> <br>
-
-            </div>
-
-        </section>
+</div>
 
                 
           
