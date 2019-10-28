@@ -1,0 +1,10 @@
+Hello,{{username}}
+
+Thank you for subscribing to My Blog!
+You will be receiving notifications everytime a new post is made.
+
+Hope you enjoy what lies ahead.
+Live long and prosper.
+
+With Regards,
+Alex Mwaura

@@ -112,11 +112,14 @@ class Blogs(db.Model):
 
         return blogs
 
-    def clear_blogs(cls):
+    def clear_blogs(self):
         '''
         Function that deletes a blog
         '''
-        Blogs.all_blogs(id).clear()
+        
+
+        db.session.delete(self)
+        db.session.commit()
 
 class Comments(db.Model):
     '''
@@ -132,6 +135,9 @@ class Comments(db.Model):
     
     blogs_id = db.Column(db.Integer, db.ForeignKey("blogs.id"))
 
+    def clear_comment(self):
+        db.session.delete(self)
+        db.session.commit()
 
     def save_comment(self):
         '''

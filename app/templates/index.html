@@ -1,57 +1,399 @@
 {% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
+
+        
+
+
+
+
 
 {% import 'macros.html' as macro%}
 
 
 {% block content %}
 
-<p>
-    {{macro.displayRandomList(quote)}}
+<ul class="text-left">
+        {% if current_user.is_authenticated %}
+        <br><br><br>
+        <a href="{{url_for('auth.logout')}}" class="btn btn-warning" style="font-size: large;">SIGN OUT</a>
+
+        {% else %}
+        <a href= "{{url_for('auth.login')}}" class="btn btn-danger btn-lg btn-huge lato" style="font-size: 20px;">SIGN IN</a>
+
+
+        {%endif%}
+
+        
+</ul>
+<nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+
+
+
+        <div class="container">
+            <div class="navbar-header">
+                    
+                    <button type="button" class="navbar-toggle navbar-brand text-danger" data-toggle="collapse" data-target="#navbar-collapsible"><h6 id="port"><div href="#section1" id="subcribeform"><div style="background-color: #fff; font-size: 20px;">{{wtf.quick_form(subscriber_form)}}</div></div></h6></button>
+                        
+               
+                
+               
+            </div>
+
+            
+            
+            <div class="navbar-collapse collapse" id="navbar-collapsible" style="color: aqua;">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-heart-o fa-lg"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<section class="container-fluid" id="section1">
+        <div class="v-center">
+            <h2 class="text-center">{{macro.displayRandomList(quote)}}</h2> <br><br>
+            
+            
+        </div>
+        <a href="#ref">
+            <div class="scroll-down bounceInDown animated">
+                <span>
+                    <i class="fa fa-angle-down fa-2x"></i>
+                </span>
+            </div>
+            </a>
+    </section>
     
-</p>
 
-<a href="/blogs">Write a new blog</a><br>
-
-
-
-<form class="form-inline ml-2" action="{{url_for('main.index')}}" method="POST">
-    <div class="md-form form-group">
-        <label class="white-color">Email Address...</label>
-        <input type="email"  class="form-control " name ="subscriber" required>
-    </div>
-    <div class="md-form form-group">
-        <button class="btn btn-sm btn-outline-info" id="subs">Subscribe</button>
-    </div>
-</form>
-
-{% for comment in comment %}
-
-<p class="mt-10"><span style="font-weight: bold">{{comment.user.username}} : </span> {{comment.comment}}</p>
-
-{% endfor %}
+    
 
 
 
 
-{% for blogs in blogs %}
 
 
-<a href="/blog/comment">comment</a><br>
+    
+
+    <section id="ref">
+            
+            {% for blogs in blogs %}
+            
+            <div class="col-md-8">
+                    <div class="card">
+                            <div class="card-title" style="text-align: center;">
+                                {{blogs.user}} <hr>{{blogs.title}}
+                                
+                            </div> <hr>
+                            <div class="card-body" style="font-size: 20px;">
+         
+                             {{blogs.blogs}}
+         
+                            </div>
+         
+                            <div class="card-footer">
+                                 {{blogs.date_posted.strftime('%Y/%m/%d @ %r')}} <br> <hr>
+
+                                 <a href="{{url_for('main.delete_blog',id = blogs.id)}} "class="btn btn-danger">Delete post</a>
+         
+                            </div>
+         
+                            <div class="" style="font-size: 30px;">
+
+                                    <a href="/blog/comment/{{blogs.id}}" class="btn btn-success">comment</a> <br>
+
+                                    {% for comment in comment %}
+                                    
+                                    {% if comment.blogs.id == blogs.id%}
+                                    
+                                    {{comment.comment}} <br>
+                                    <a href="{{url_for('main.delete_comment',blogs_id = comment.id)}}" class="btn btn-danger" style="font-size: 20px;">Delete</a> <hr>
 
 
-{{blogs.title}} <br>
+                                    
+                                    {%endif%}
 
-{{blogs.blogs}} <br>
-{{blogs.date_posted.strftime('%Y/%m/%d @ %r')}} <br> 
+                                    
+                                    {% endfor %}
+                                        
+
+                            </div>
+                         
+                         
+                     </div>
+
+            </div>
+
+
+            
+
+
+            {% endfor %}
+
+
+            <div class-col-md-4>
+
+                    <a href="/blogs" class="btn btn-success" style="font-size: 20px;">Write a new blog</a><br> <br>
+
+            </div>
+
+        </section>
+
+                
+          
+        
+        
+       
+        
+        
+
+        
+         <br>
+         <br>
+        
+        
+        
+       
+        
+        
+         <style>
+                @import url(http://fonts.googleapis.com/css?family=Lato:300,400);
+               @import url(http://fonts.googleapis.com/css?family=Bitter:400);
+               
+               html,body {
+                   height:100%;
+                   background:center no-repeat fixed url('https://neilpatel.com/wp-content/uploads/2017/08/blog.jpg');
+                   background-size: cover;
+                   color:#444;
+                   font-family: 'Lato', sans-serif;
+               }
+               
+               @media (min-width:768px) {
+                   h1 {
+                       font-size:68px;
+                   }
+               }
+               
+               a {
+                   color:#999;
+               }
+               
+               a:hover {
+                   color:#111;
+               }
+               
+               .btn,.well,.panel {
+                   border-radius:0;
+               }
+               
+               .btn-danger {
+                   background-color:#f44d3c;
+               }
+               
+               .text-danger, a.text-danger {
+                   color:#f44d3c;
+               }
+               
+               .btn-huge {
+                   padding:17px 22px;
+                   font-size:40px;
+               }
+               
+               .lato {
+                   font-family: 'Lato', sans-serif;
+               }
+               
+               .bitter {
+                   font-family: 'Bitter', serif;
+               }
+               
+               .icon-bar {
+                   background-color:#fff;
+               }
+               
+               .navbar-trans {
+                   background-color:#2b2b2b;
+                   color: goldenrod;
+                   border-width:0;
+                   
+               }
+               
+               .navbar-trans .navbar-brand, .navbar-trans >.container-fluid .ngeavbar-brand {
+                   padding: 14px;
+                   color: aqua;
+               }
+               
+               .navbar-trans li>a:focus,.navbar-trans li.active {
+                   background-color: aqua;
+                   color: goldenrod;
+               }
+               
+               .navbar-trans li>a:hover {
+                   background-color: aqua;
+                   color: goldenrod;
+                   opacity:0.5;
+               }
+               
+               .navbar-trans a{
+                   color: goldenrod;
+                   letter-spacing:1px;
+               }
+               
+               .navbar-trans .form-control:focus {
+                   border-color: goldenrod;
+                   outline: 0;
+                   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(100,100,100,0.6);
+                   box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(100,100,100,0.6);
+               }
+               
+               
+               .scroll-down {
+                 position: absolute;
+                 left: 50%;
+                 bottom: 40px;
+                 border: 2px solid #fff;
+                 border-radius: 50%;
+                 height: 50px;
+                 width: 50px;
+                 margin-left: -15px;
+                 display: block;
+                 padding: 7px;
+                 text-align: center;
+                 z-index:-1
+               }
+               
+               .scroll-up {
+                 position: fixed;
+                 display: none;
+                 z-index: 999;
+                 bottom: 2em;
+                 right: 2em;
+               }
+               
+               .scroll-up a {
+                 background-color: rgba(135, 135, 135, 0.5);
+                 display: block;
+                 width: 35px;
+                 height: 35px;
+                 text-align: center;
+                 color: #fff;
+                 font-size: 15px;
+                 line-height: 30px;
+               }
+               
+               section {
+                   padding-top:70px;  
+                   padding-bottom:50px;
+                   min-height:100%;
+                   min-height:calc(100% - 0);
+                   -webkit-transform-style: preserve-3d;
+                   -moz-transform-style: preserve-3d;
+                   transform-style: preserve-3d;
+               }
+               
+               @media (min-width:768px) {
+                   .v-center {
+                       height: 50%;
+                       overflow: visible;
+                       margin: auto;
+                       position: absolute;
+                       top: 0; left: 0; bottom: 0; right: 0;
+                   }
+               }
+                 
+               #section1{
+                   background-color: rgba(0,0,0,0.7);
+                   color:#fff;
+                   font-family: 'Bitter', serif;
+               }
+                
+               
+               footer {
+                   background-color:#2b2b2b;
+                   color:#ddd;
+                   min-height:100px;
+                   padding-top:20px;
+                   padding-bottom:40px;
+               }
+               
+               footer .nav>li>a {
+                   padding: 3px;
+                   color: aqua;
+               }
+               
+               footer .nav>li>a:hover {
+                   background-color:transparent;
+                   color:#fff;
+               }
+               
+                
+               .button1 {
+                   border-radius: 4px;
+                   background-color: #f4511e;
+                   border: none;
+                   color: #FFFFFF;
+                   text-align: center;
+                   font-size: 50px;
+                   width: 200px;
+                   transition: all 0.5s;
+                   cursor: pointer;
+                   margin: 5px;
+                 }
+                 
+                 .button1 .btn {
+                   cursor: pointer;
+                   display: inline-block;
+                   position: relative;
+                   transition: 0.5s;
+                   font-size: 50px;
+                 }
+                 
+                 .button1 .btn:after {
+                   content: '\00bb';
+                   position: absolute;
+                   opacity: 0;
+                   top: 0;
+                   right: -20px;
+                   transition: 0.5s;
+                   font-size: 50px;
+                 }
+                 
+                 .button1:hover .btn {
+                   padding-right: 25px;
+                   font-size: 50px;
+                 }
+                 
+                 .button1:hover .btn:after {
+                   font-size: 50px;
+                   opacity: 1;
+                   right: 0;
+                 }
+                  
+                
+                
+                </style>        
+        
 
 
 
 
-{% endfor %}
 
 
 
 
+
+
+
+    
+    
+
+    
+    
+    
 
 
 

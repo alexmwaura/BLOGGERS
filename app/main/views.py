@@ -74,6 +74,15 @@ def new_blogs():
 
     return render_template('blog.html',blog_forms = blog_forms)
 
+
+@main.route('/blogs/delete<int:id>',methods = ['GET','POST'])
+@login_required
+def delete_blog(id):
+    blogs = Blogs.query.filter_by(id = id).first()
+    blogs.clear_blogs()
+    return redirect(url_for('main.index',id = blogs.id))
+
+
 @main.route('/like/<blogs_id>')
 @login_required
 def upvote(blogs_id):
@@ -81,6 +90,7 @@ def upvote(blogs_id):
     blogs.like_blog()
 
     return redirect(url_for('main.index',id=blogs_id))
+
 
 @main.route('/dislike/<blogs_id>')
 @login_required
@@ -108,5 +118,11 @@ def new_comment(blogs_id):
 
     return render_template("comment.html",comment_form = comment_form,blogs = blogs)    
 
+@main.route("/blog/comment/delete/<blogs_id>", methods = ["GET","POST"])
+@login_required
+def delete_comment(blogs_id):
+    comment = Comments.query.filter_by(id = blogs_id).first()
+    comment.clear_comment()
 
+    return redirect(url_for('main.index'))
 

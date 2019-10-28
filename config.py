@@ -13,6 +13,18 @@ class Config:
     RANDOM_API_KEY = os.environ.get("RANDOM_API_KEY")
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://alex:32915974@localhost/blog'
 
+
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USE_SSL = False
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+
+    SIMPLEMDE_JS_IIFE = True
+    SIMPLEMDE_USE_CDN = True
+    
+
 class ProdConfig(Config):
     '''
     Production configuration child class

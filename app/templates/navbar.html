@@ -1,37 +1,31 @@
 
 
-<div class="navbar navbar-inverse" role="navigation">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./CSS/styles.css">
+  <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.9/js/mdb.min.js"></script>
 
-  
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle = "collapse" data-target = ".navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-              
-               
-              
-  
-      </div><hr>
-  
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right" >
-        {% if current_user.is_authenticated %}
+  <script src="./scripts/jquery-3.4.1.js"></script>
+  <script src="./scripts/scripts.js"></script>
 
-        <li id="home"><a href="/"><h3 class="btn btn-warning">HOME</h3></a></li>
-        <li id="profile"><a href="{{url_for('main.index',uname=current_user.username)}}"><h3 class="btn btn-warning">PROFILE</h3></a></a></li>
-        <li id="sign-out"><a href="{{url_for('auth.logout')}}"><h3 class="btn btn-warning">SIGN OUT</h3></a></li>
-        {% else %}
-        
-        <li id="sign-in"><a href="{{url_for('auth.login')}}"><h3 class="btn btn-warning">SIGN IN</h3></a></li>
-        {%endif%}
-      </ul>
-    </div>
-  </div> <br><br><hr>
 
-  
+
+
+
+
+
   

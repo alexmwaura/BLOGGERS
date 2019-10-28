@@ -1,0 +1,11 @@
+Hello {{username}}
+Welcome to My Blog!
+You have just been registered as an admin for the website and have access to the following features:
+* Adding Posts
+* Deleting Posts
+* Deleting Comments
+* Adding Admins
+
+Use these features wisely. May the Force be with you Master.
+With Regards,
+Alex Mwaura ~ Website Owner
