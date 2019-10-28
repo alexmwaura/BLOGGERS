@@ -77,6 +77,10 @@ class Blogs(db.Model):
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
+
+    comment = db.relationship("Comments", backref='blogs', lazy='dynamic')
+    
+
     def save_blog(self):
         """
         Function to save a blog
@@ -149,7 +153,7 @@ class Subscriber(db.Model):
     email = db.Column(db.String(255),unique = True,index = True)
 
     def save_subsciber(self):
-        db.session.commit(self)
+        db.session.add(self)
         db.session.commit()
 
         
