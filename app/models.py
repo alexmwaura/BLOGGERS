@@ -6,8 +6,8 @@ from datetime import datetime
 from hashlib import md5
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+def load_user(users_id):
+    return User.query.get(int(users_id))
 
 
 class RandomQuotes:
@@ -31,6 +31,9 @@ class User(UserMixin, db.Model):
 
     pass_secure = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True, index=True)
+
+    bio = db.Column(db.String(255),default ='My default Bio')
+ 
 
     # Relationship defining
     comment = db.relationship("Comments", backref='user', lazy='dynamic')

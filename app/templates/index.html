@@ -39,7 +39,7 @@
 </div>
 {% if current_user.is_authenticated %}
 <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
-        <a href="{{ url_for('.user', username=current_user.username) }}">Profile</a>
+        <a href="{{url_for('main.profile',name=current_user.username)}}">Profile</a>
         <a href="{{url_for('auth.logout')}}" class="btn btn-warning" style="font-size: large;color: #000;">SIGN OUT</a>
         {% else %}
         <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">        
@@ -76,7 +76,7 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-heart-o fa-lg"></i></a></li>
+                    
                 </ul>
             </div>
         </div>

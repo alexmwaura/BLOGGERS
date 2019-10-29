@@ -15,8 +15,13 @@
     <hr>
     {% for post in posts %}
     <p>
-    {{ post.username }} says: <b>{{ post.blogs.id }}</b>
+    {{ post.username }}
     </p>
+    {% if blogs %}
+        {{blogs.blogs}}
+    {% endif %}
+
+
     {% endfor %}
 
 
