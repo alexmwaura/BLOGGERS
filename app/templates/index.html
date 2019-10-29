@@ -49,6 +49,8 @@
         {% if current_user.is_authenticated %}
         {{wtf.quick_form(subscriber_form)}}
         {% else %}
+        
+        {%endif%}
         <div class="container">
 
             
@@ -87,7 +89,7 @@
             </div>
         </div>
     </nav>
-
+    
 <section class="container-fluid" id="section1">
         <div class="v-center">
             <h2 class="text-center">
@@ -103,7 +105,7 @@
             </div>
             </a>
     </section>
-    
+     
 
     
 
