@@ -6,15 +6,17 @@
 
 
 
-  <div class="container">
-  <h2>Start your blog</h2>
-  <p style="color: blue; font-size: 50px; background: black ; opacity: 0.5;">If you don't the world wont know your thoughts!!.</p>
-<hr>
-<div style="background-color: antiquewhite; font-size: 20px;">
-    {{ wtf.quick_form(blog_forms) }}
-</div>
-<hr>
-
+  
+<div  i="particles-js"  >  
+  <div class=" row" >
+          
+      <div class="col-md-2"></div>
+      <div class="col-md-8" id="postform">
+          <h2 class="text-center">Create Your Blog Here!</h2>
+          {{wtf.quick_form(form)}}
+      </div>
+      <div class="col-md-2"></div>
+  </div>
 </div>
 
 
