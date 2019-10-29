@@ -29,7 +29,7 @@ This  is a flask application that allows writers to post blogs, edit and delite 
 | Select Login | **Email** and **password** | Redirect to page with blogs that have been posted by writes and be able to subscribe to the blog|
 | Select comment button | **Comment** | Form that you input your comment|
 | Click on submit |  | Redirect to that specific comment and its post, delete button for comment enabled|
-|Subscription | **Email Address**| Flash message "Succesfully subsbribed to Bloggers"|
+|Subscription | **Email Address**| Send Email for every new blog added|
 
 
 
