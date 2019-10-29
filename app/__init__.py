@@ -22,14 +22,14 @@ login_manager.login_view = 'auth.login'
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 mail = Mail()
-simplemde = SimpleMDE
+simple = SimpleMDE()
 def create_app(config_name):
 
     app = Flask(__name__)
 
     app.config.from_object(config_options[config_name])
 
-
+    simple.init_app(app)
     #initializing flask Extensions
 
     # cors.init_app(app)
@@ -37,6 +37,7 @@ def create_app(config_name):
     db.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
+    
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 

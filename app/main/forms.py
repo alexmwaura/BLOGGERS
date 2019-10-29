@@ -8,7 +8,7 @@ from flask_login import current_user
 
 class BlogForm(FlaskForm):
     title = StringField('Blog title',validators = [Required()])
-    blogs = StringField('Your Blog',validators = [Required()])
+    blogs = TextAreaField('Your Blog')
     submit = SubmitField('Submit')
 
 class SubscriberForm(FlaskForm):
@@ -21,7 +21,7 @@ class SubscriberForm(FlaskForm):
 
 
 class CommentForm(FlaskForm):
-    comment = TextAreaField("Type your commnet for this blog", validators = [Required()])
+    comment = TextAreaField("Type your commnet for this blog")
     submit = SubmitField('Submit')    
 
 class UpdateProfile(FlaskForm):
