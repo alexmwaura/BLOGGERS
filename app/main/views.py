@@ -9,7 +9,6 @@ from ..import db
 from app.auth.forms import LoginForm
 import os
 import secrets
-from PIL import Image
 
 @main.route("/",methods = ["GET","POST"])
 
