@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort,flash
 from .import main
 from ..requests import get_random
-from ..models import RandomQuotes,Blogs,Comments,Subscriber
+from ..models import RandomQuotes,Blogs,Comments,Subscriber,User
 from flask_login import login_required, current_user
 from ..email import mail_message
 from .forms import BlogForm,CommentForm,SubscriberForm
@@ -126,3 +126,13 @@ def delete_comment(blogs_id):
 
     return redirect(url_for('main.index'))
 
+
+
+@main.route("/user/<username>")
+@login_required
+def user(username):
+    user = User.query.filter_by(username = username).first_or_404()
+
+    posts = Blogs.get_blogs(cls=username)
+
+    return render_template('user.html', user=user, posts = posts )    

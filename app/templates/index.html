@@ -39,6 +39,7 @@
 </div>
 {% if current_user.is_authenticated %}
 <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+        <a href="{{ url_for('.user', username=current_user.username) }}">Profile</a>
         <a href="{{url_for('auth.logout')}}" class="btn btn-warning" style="font-size: large;color: #000;">SIGN OUT</a>
         {% else %}
         <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">        
@@ -170,7 +171,8 @@
                         <a href="/blogs" class="btn btn-success" style="font-size: 20px;">Write a new blog</a><br> <br>
                     
                 </div>
-    
+
+
             </section>
 
 </div>

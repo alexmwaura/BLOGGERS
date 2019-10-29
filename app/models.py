@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import login_manager
 from datetime import datetime
-
+from hashlib import md5
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -56,7 +56,11 @@ class User(UserMixin, db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+    def avatar(self, size):
 
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
+            digest, size)
 
 
 class Blogs(db.Model):
@@ -108,7 +112,7 @@ class Blogs(db.Model):
         """
         function which gets a particular blog when requested by date posted
         """
-        blogs = Blogs.query.query.all()
+        blogs = Blogs.query.all()
 
         return blogs
 
