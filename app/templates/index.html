@@ -13,19 +13,7 @@
 
 {% block content %}
 
-<ul class="text-left">
-        {% if current_user.is_authenticated %}
-        <br><br><br>
-        <a href="{{url_for('auth.logout')}}" class="btn btn-warning" style="font-size: large;">SIGN OUT</a>
 
-        {% else %}
-        <a href= "{{url_for('auth.login')}}" class="btn btn-danger btn-lg btn-huge lato" style="font-size: 20px;">SIGN IN</a>
-
-
-        {%endif%}
-
-        
-</ul>
 <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
 
 
@@ -33,7 +21,32 @@
         <div class="container">
             <div class="navbar-header">
                     
-                    <button type="button" class="navbar-toggle navbar-brand text-danger" data-toggle="collapse" data-target="#navbar-collapsible"><h6 id="port"><div href="#section1" id="subcribeform"><div style="background-color: #fff; font-size: 20px;">{{wtf.quick_form(subscriber_form)}}</div></div></h6></button>
+                    <div class="text-left">
+
+                            {{wtf.quick_form(subscriber_form)}}
+
+                        </div>
+                        <div class="float-right"> 
+
+                                {% if current_user.is_authenticated %}
+                            <br><br><br>
+                            <a href="{{url_for('auth.logout')}}" class="btn btn-warning" style="font-size: large;color: #000;">SIGN OUT</a>
+                    
+                            {% else %}
+                            <a href= "{{url_for('auth.login')}}" class="btn btn-danger btn-lg btn-huge lato" style="font-size: large;">SIGN IN</a>
+                    
+                    
+                            {%endif%}
+
+                        </div>
+                           
+
+                    
+
+                   
+                
+
+
                         
                
                 
@@ -163,6 +176,7 @@
         
         
        
+         <!-- <button type="button" class="navbar-toggle navbar-brand text-danger" data-toggle="collapse" data-target="#navbar-collapsible"><h6 id="port"><div href="#section1" id="subcribeform"><div style="background-color: #fff; font-size: 20px;"></div></div></h6></button> -->
         
         
          <style>
