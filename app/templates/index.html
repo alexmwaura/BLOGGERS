@@ -46,8 +46,9 @@
         <a href= "{{url_for('auth.login')}}" class="btn btn-danger" style="font-size: large;">SIGN IN</a>
 
         {%endif%}
+        {% if current_user.is_authenticated %}
         {{wtf.quick_form(subscriber_form)}}
-
+        {% else %}
         <div class="container">
 
             
