@@ -3,7 +3,13 @@
 
 
         
+<div class="text-left">
 
+       
+
+    </div>
+    
+       
 
 
 
@@ -12,34 +18,42 @@
 
 
 {% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<div class="float-right"> 
+
+       
+    
+    
+
+    
+    
 
 
+    
+
+</div>
+{% if current_user.is_authenticated %}
 <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+        <a href="{{url_for('auth.logout')}}" class="btn btn-warning" style="font-size: large;color: #000;">SIGN OUT</a>
+        {% else %}
+        <nav class="navbar navbar-trans navbar-fixed-top" role="navigation">        
+        <a href= "{{url_for('auth.login')}}" class="btn btn-danger" style="font-size: large;">SIGN IN</a>
 
-
+        {%endif%}
+        {{wtf.quick_form(subscriber_form)}}
 
         <div class="container">
+
+            
             <div class="navbar-header">
+              
                     
-                    <div class="text-left">
-
-                            {{wtf.quick_form(subscriber_form)}}
-
-                        </div>
-                        <div class="float-right"> 
-
-                                {% if current_user.is_authenticated %}
-                            <br><br><br>
-                            <a href="{{url_for('auth.logout')}}" class="btn btn-warning" style="font-size: large;color: #000;">SIGN OUT</a>
-                    
-                            {% else %}
-                            <a href= "{{url_for('auth.login')}}" class="btn btn-danger btn-lg btn-huge lato" style="font-size: large;">SIGN IN</a>
-                    
-                    
-                            {%endif%}
-
-                        </div>
-                           
+                 
 
                     
 
@@ -154,7 +168,7 @@
                 <div class-col-md-4>
     
                         <a href="/blogs" class="btn btn-success" style="font-size: 20px;">Write a new blog</a><br> <br>
-    
+                    
                 </div>
     
             </section>
@@ -176,7 +190,7 @@
         
         
        
-         <!-- <button type="button" class="navbar-toggle navbar-brand text-danger" data-toggle="collapse" data-target="#navbar-collapsible"><h6 id="port"><div href="#section1" id="subcribeform"><div style="background-color: #fff; font-size: 20px;"></div></div></h6></button> -->
+         
         
         
          <style>
