@@ -149,8 +149,8 @@
                                         
                                         {% if comment.blogs.id == blogs.id%}
                                         
-                                        {{comment.comment}} <br>
-                                        <a href="{{url_for('main.delete_comment',blogs_id = comment.id)}}" class="btn btn-danger" style="font-size: 20px;">Delete</a> <hr>
+                                        <h4>{{comment.comment}}</h4> <br>
+                                        <a href="{{url_for('main.delete_comment',blogs_id = comment.id)}}" class="btn btn-danger" style="font-size: 10px;">Delete</a> <hr>
     
     
                                         
